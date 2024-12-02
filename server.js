@@ -25,21 +25,30 @@ app.get("/", (req, res) => {
     res.send("Server del mio blog"); // Sulla risposta usiamo il metodo send per inviare del puro testo sulla pagina web ( Oppure anche del contenuto HTML ).
 });
 
+// Esempio con post...
+app.post("/", (req, res) => {
+    res.send("post")
+});
+
 // - Creiamo una rotta /bacheca che restituisca un oggetto json e il suo conteggio. Accetta una sola risposta.
 app.get("/bacheca", (req, res) => {
     const risposta = {
         conteggio: posts.length,
         posts: posts,
     }
-    res.json(risposta)
-});
-
-// - Mettiamo in ascolto il server sulla porta specificata:
-app.listen(PORT, () => {
-    console.log(`Server in ascolto sulla porta: http://localhost:${PORT}`);
+    res.json(risposta);
 });
 
 // STEP 3  ---Asset-Statici---
 // - Configuriamo gli asset statici sull’applicazione.
 app.use(express.static('public'));
+
+
+
+// - Mettiamo in ascolto il server sulla porta specificata: Va messo alla fine del codice.
+app.listen(PORT, () => {
+    console.log(`Server in ascolto sulla porta: http://localhost:${PORT}`);
+});
+
+
 
