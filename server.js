@@ -39,3 +39,7 @@ app.listen(PORT, () => {
     console.log(`Server in ascolto sulla porta: http://localhost:${PORT}`);
 });
 
+// STEP 3  ---Asset-Statici---
+// - Configuriamo gli asset statici sull’applicazione.
+app.use(express.static('public'));
+
