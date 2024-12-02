@@ -33,15 +33,23 @@ app.post("/", (req, res) => {
 
 // - Creiamo una rotta /bacheca che restituisca un oggetto json e il suo conteggio. Accetta una sola risposta.
 app.get("/bacheca", (req, res) => {
+
+    // Risposta base
     const risposta = {
         conteggio: posts.length,
         posts: posts,
     }
-    res.json(risposta)
+    //res.json(risposta)
 
-    console.log(req.query) // Accediamo ai parametri della query string in Express utilizzando req.query.
+    // Con query string
     const { tags } = req.query; // Catturiamo il valore di tag con la destrutturazione dell'oggetto.
+    let arrayFiltred = posts;
 
+    if (tags) {
+        arrayFiltred = arrayFiltred.filter((element) => element.tags.includes(tags));
+    }
+
+    res.json(arrayFiltred)
 
 });
 
