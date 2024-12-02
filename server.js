@@ -17,6 +17,7 @@ const app = express();
 const PORT = 3000;
 // - Esportiamo dal file db.js l'array di oggetti:
 const posts = require("./db.js");
+const { log } = require("console");
 
 
 
@@ -36,7 +37,12 @@ app.get("/bacheca", (req, res) => {
         conteggio: posts.length,
         posts: posts,
     }
-    res.json(risposta);
+    res.json(risposta)
+
+    console.log(req.query) // Accediamo ai parametri della query string in Express utilizzando req.query.
+    const { tags } = req.query; // Catturiamo il valore di tag con la destrutturazione dell'oggetto.
+
+
 });
 
 // STEP 3  ---Asset-Statici---
@@ -49,6 +55,10 @@ app.use(express.static('public'));
 app.listen(PORT, () => {
     console.log(`Server in ascolto sulla porta: http://localhost:${PORT}`);
 });
+
+
+
+
 
 
 
